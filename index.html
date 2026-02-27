@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEN of Culture</title>
+    <meta name="description" content="MEN of Culture — Enter the system.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cinematic.css">
+    <link rel="stylesheet" href="css/modeselect.css">
+    <link rel="stylesheet" href="css/members-ui.css">
+</head>
+
+<body class="theme-green">
+    <div class="scanlines"></div>
+
+    <!-- ========== SPLASH PAGE ========== -->
+    <div id="splash-page">
+        <div id="terminal-body"></div>
+    </div>
+
+    <!-- ========== LOGIN PAGE ========== -->
+    <div id="login-page">
+        <canvas id="matrix-canvas"></canvas>
+        <div id="cursor-glow"></div>
+        <div class="login-container">
+            <div class="login-header">
+                <span class="logo-icon">⟁</span>
+                <h1 class="glitch" data-text="MEN of Culture">MEN of Culture</h1>
+                <div class="tagline">// Secure Access Terminal</div>
+            </div>
+
+            <button class="login-btn" id="login-btn" onclick="handleLogin()">
+                ▸ ACCESS SYSTEM
+            </button>
+
+            <div class="status-text">
+                SYSTEM READY <span class="blink">█</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CINEMATIC OVERLAY ========== -->
+    <div id="cinematic-overlay">
+        <canvas id="cinematic-noise"></canvas>
+
+        <div id="phase-initiation" class="phase">
+            <div class="scan-line"></div>
+            <div class="phase-text glitch-text" id="init-text"></div>
+        </div>
+
+        <div id="phase-granted" class="phase">
+            <div class="phase-text granted-text" id="granted-text">ACCESS GRANTED</div>
+        </div>
+
+        <div id="phase-welcome" class="phase">
+            <div class="phase-text welcome-text" id="welcome-text"></div>
+        </div>
+
+        <div id="phase-identity" class="phase">
+            <div class="phase-text identity-text" id="identity-text">MEN OF CULTURE</div>
+            <div class="phase-subtext" id="identity-sub">This space belongs to us.</div>
+        </div>
+
+        <!-- Mode Selection (hands + tablets) -->
+        <div id="phase-modeselect" class="phase">
+            <div class="mode-title" id="mode-title">SELECT YOUR PATH</div>
+            <div class="hands-container">
+                <div class="hand-wrapper hand-left" id="hand-left" onclick="selectMode('blue')">
+                    <img src="images/hand-blue.png" alt="Blue Tablet" class="hand-img">
+                    <div class="tablet-glow tablet-glow-blue"></div>
+                    <div class="tablet-label tablet-label-blue">BLUE PATH</div>
+                </div>
+                <div class="hand-wrapper hand-right" id="hand-right" onclick="selectMode('red')">
+                    <img src="images/hand-red.png" alt="Red Tablet" class="hand-img">
+                    <div class="tablet-glow tablet-glow-red"></div>
+                    <div class="tablet-label tablet-label-red">RED PATH</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Confirmation -->
+        <div id="phase-confirm" class="phase">
+            <div class="phase-text confirm-main" id="confirm-main">MODE SELECTED</div>
+            <div class="phase-subtext confirm-sub" id="confirm-sub"></div>
+        </div>
+
+        <!-- System Ready -->
+        <div id="phase-ready" class="phase">
+            <div class="ready-text" id="ready-text">SYSTEM READY</div>
+        </div>
+    </div>
+
+    <!-- ========== MEMBER GRID PAGE ========== -->
+    <div id="member-grid-page">
+        <button class="change-path-btn" onclick="returnToPathSelection()">← Change Path</button>
+        <canvas id="grid-matrix-canvas"></canvas>
+        <div class="grid-header">
+            <div class="grid-path-label" id="grid-path-label">// BLUE PATH</div>
+            <div class="grid-title">MEN OF CULTURE</div>
+            <div class="grid-subtitle">Member Directory</div>
+        </div>
+        <div class="members-grid" id="members-grid"></div>
+    </div>
+
+    <!-- ========== MEMBER DETAIL PAGE ========== -->
+    <div id="member-detail-page">
+        <button class="detail-back-btn" onclick="backToGrid()">◂ BACK</button>
+        <div class="detail-container">
+            <img class="detail-portrait" id="detail-portrait" src="" alt="">
+            <div class="detail-nickname" id="detail-nickname"></div>
+            <div class="detail-realname" id="detail-realname"></div>
+            <div id="detail-sections"></div>
+            <div class="detail-quote" id="detail-quote-block"></div>
+        </div>
+    </div>
+
+    <!-- Scripts (order matters) -->
+    <script src="js/members.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/cinematic.js"></script>
+    <script src="js/modeselect.js"></script>
+    <script src="js/directory.js"></script>
+</body>
+
+</html>

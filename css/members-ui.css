@@ -1,0 +1,313 @@
+/* ===== MEMBER GRID PAGE ===== */
+#member-grid-page {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-primary, #00ff41) transparent;
+}
+
+#member-grid-page::-webkit-scrollbar {
+    width: 4px;
+}
+
+#member-grid-page::-webkit-scrollbar-thumb {
+    background: var(--theme-primary, #00ff41);
+    border-radius: 4px;
+}
+
+#member-grid-page.active {
+    display: flex;
+    opacity: 1;
+}
+
+.grid-header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.grid-path-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: 6px;
+    color: var(--theme-dim, #009922);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.grid-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--theme-primary, #00ff41);
+    text-shadow: 0 0 15px var(--theme-glow, rgba(0, 255, 65, 0.4));
+    text-transform: uppercase;
+}
+
+.grid-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--theme-dim, #009922);
+    margin-top: 6px;
+}
+
+/* Grid container */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px 30px 60px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Member card */
+.member-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--theme-border, rgba(0, 255, 65, 0.15));
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: var(--cursor-pointer, pointer);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeIn 0.4s ease forwards;
+}
+
+.member-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--theme-primary, #00ff41);
+    box-shadow: 0 0 25px var(--theme-glow, rgba(0, 255, 65, 0.2));
+}
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.member-card-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--theme-border, rgba(0, 255, 65, 0.15));
+    background: #0a0a0a;
+}
+
+.member-card-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(9px, 1.1vw, 12px);
+    letter-spacing: 2px;
+    color: var(--theme-primary, #00ff41);
+    text-align: center;
+    padding: 12px 8px;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px var(--theme-glow, rgba(0, 255, 65, 0.3));
+}
+
+/* Canvas behind grid */
+#grid-matrix-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* ===== MEMBER DETAIL PAGE ===== */
+#member-detail-page {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-primary, #00ff41) transparent;
+}
+
+#member-detail-page::-webkit-scrollbar {
+    width: 4px;
+}
+
+#member-detail-page::-webkit-scrollbar-thumb {
+    background: var(--theme-primary, #00ff41);
+    border-radius: 4px;
+}
+
+#member-detail-page.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Back button */
+.detail-back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 70;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--theme-primary, #00ff41);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--theme-border, rgba(0, 255, 65, 0.2));
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: var(--cursor-pointer, pointer);
+    transition: all 0.3s ease;
+}
+
+.detail-back-btn:hover {
+    border-color: var(--theme-primary, #00ff41);
+    box-shadow: 0 0 15px var(--theme-glow, rgba(0, 255, 65, 0.2));
+    background: var(--theme-border, rgba(0, 255, 65, 0.05));
+}
+
+/* Change path button */
+.change-path-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 70;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--theme-primary, #00ff41);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--theme-border, rgba(0, 255, 65, 0.2));
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: var(--cursor-pointer, pointer);
+    transition: all 0.3s ease;
+}
+
+.change-path-btn:hover {
+    border-color: var(--theme-primary, #00ff41);
+    box-shadow: 0 0 15px var(--theme-glow, rgba(0, 255, 65, 0.2));
+    background: var(--theme-border, rgba(0, 255, 65, 0.05));
+}
+
+/* Detail content */
+.detail-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 60px 30px 60px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Member portrait */
+.detail-portrait {
+    width: clamp(140px, 30vw, 200px);
+    height: clamp(140px, 30vw, 200px);
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 24px;
+    border: 2px solid var(--theme-primary, #00ff41);
+    box-shadow: 0 0 30px var(--theme-glow, rgba(0, 255, 65, 0.2));
+    background: #0a0a0a;
+}
+
+/* Detail name */
+.detail-nickname {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--theme-primary, #00ff41);
+    text-shadow: 0 0 15px var(--theme-glow, rgba(0, 255, 65, 0.4));
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.detail-realname {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--theme-dim, #009922);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Info sections */
+.detail-section {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--theme-border, rgba(0, 255, 65, 0.1));
+}
+
+.detail-section:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--theme-dim, #009922);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.detail-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--theme-primary, #00ff41);
+    white-space: pre-line;
+}
+
+/* Quote section */
+.detail-quote {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    color: var(--theme-primary, #00ff41);
+    text-align: center;
+    font-style: italic;
+    padding: 16px;
+    border: 1px solid var(--theme-border, rgba(0, 255, 65, 0.15));
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 6px var(--theme-glow, rgba(0, 255, 65, 0.3));
+    margin-top: 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 16px 16px 40px;
+    }
+
+    .detail-container {
+        padding: 50px 20px 40px;
+    }
+
+    .grid-header {
+        padding: 30px 16px 12px;
+    }
+}
