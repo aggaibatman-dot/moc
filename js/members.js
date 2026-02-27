@@ -14,7 +14,7 @@ const MEMBERS = [
     {
         nickname: 'Dilse Nandan',
         realName: 'Nandan',
-        about: 'Lives life on easy mode. Stress avoids him.\nLoved a girl dev but she loved his dad.',
+        about: 'Lives life on easy mode. Stress avoids him.\nLoved a girl devu but she loved another guys.',
         role: 'Mood Booster (Unofficial)',
         hobbies: 'Everything except studying',
         personality: 'Happy-go-lucky, chill, carefree',
@@ -105,3 +105,4 @@ function getMemberImagePath(nickname, color) {
     const formattedName = nickname.toLowerCase().replace(/\s+/g, '-');
     return `${folder}/${formattedName}.png`;
 }
+
